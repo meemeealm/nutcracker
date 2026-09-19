@@ -1,0 +1,45 @@
+# Node
+node_modules/
+dist/
+.vite/
+.npm/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# TensorFlow / ML caches
+.keras/
+.tensorflow/
+data/yamnet_class_map.csv
+
+# Training artifacts
+data/processed/
+data/checkpoints/
+*.h5
+*.ckpt
+*.pb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Temporary files
+*.tmp
+*.temp

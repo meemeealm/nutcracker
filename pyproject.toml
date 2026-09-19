@@ -1,0 +1,16 @@
+[project]
+name = "comfortably-numb"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "librosa>=1.0.0",
+    "numpy>=2.5.3",
+    "pygame>=2.6.1",
+    "setuptools<70",
+    "soundfile>=0.14.0",
+    "tensorflow>=2.21.0",
+    "tensorflow-hub>=0.16.1",
+    "tensorflowjs>=0.1.1",
+]
