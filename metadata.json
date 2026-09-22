@@ -1,0 +1,6 @@
+{
+  "name": "Nutcracker",
+  "description": "Fluid Canvas turning music into a continuously evolving digital painting through offline audio analysis, neural feature translation, and WebGL fluid simulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

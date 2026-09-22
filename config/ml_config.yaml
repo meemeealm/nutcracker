@@ -1,0 +1,105 @@
+# Fluid Canvas ML & Song Dynamics Configuration
+# Points each song to its feature/swirl JSON files in the public folder.
+
+version: "1.0"
+
+ml_engine:
+  default_model_path: "/ml/browser/model.json"
+  model_format: "auto"
+  inference_throttle_ms: 45
+  interpolation:
+    enabled: true
+    lerp_factor: 0.12
+
+rendering:
+  mesh_resolution: 128
+  plane_size: 8.0
+  default_texture: "/textures/default.webp"
+
+# Per-song configuration
+# Swirl parameters are loaded dynamically from the JSON files in the public folder.
+songs:
+  beyond-love:
+    title: "Beyond Love"
+    artist: "Beach House"
+    features_path: "/ml/beyond_love_beach_house_features.json"
+
+  catch-the-rainbow:
+    title: "Catch the Rainbow"
+    artist: "Rainbow"
+    features_path: "/ml/Catch_the_Rainbow_features.json"
+
+  comfortably-numb:
+    title: "Comfortably Numb"
+    artist: "Pink Floyd"
+    features_path: "/ml/comfortably_numb_features.json"
+
+  waltz-no-2:
+    title: "Waltz No. 2"
+    artist: "Dmitri Shostakovich"
+    features_path: "/ml/Dmitri-Shostakovich _Waltz_num_2_features.json"
+
+  gymnopédie-no-1:
+    title: "Gymnopédie No. 1"
+    artist: "Erik Satie"
+    features_path: "/ml/Erik_Satie_Gymnopédie_num_1_features.json"
+
+  goodbye-yellow-brick-road:
+    title: "Goodbye Yellow Brick Road"
+    artist: "Elton John"
+    features_path: "/ml/Goodbye_Yellow_Brick_Road_Elton_John_features.json"
+
+  clint-eastwood:
+    title: "Clint Eastwood"
+    artist: "Gorillaz"
+    features_path: "/ml/Gorillaz - Clint Eastwood_features.json"
+
+  just-the-two-of-us:
+    title: "Just the Two of Us"
+    artist: "Bill Withers"
+    features_path: "/ml/just_the_two_of_us_bill_withers_features.json"
+
+  mariage-d-amour:
+    title: "Mariage d'Amour"
+    artist: "Paul de Senneville"
+    features_path: "/ml/mariage_d_amour_features.json"
+
+  billie-jean:
+    title: "Billie Jean"
+    artist: "Michael Jackson"
+    features_path: "/ml/Michael_Jackson_Billie_Jean_features.json"
+
+  lacrimosa-requiem:
+    title: "Lacrimosa (Requiem)"
+    artist: "Wolfgang Amadeus Mozart"
+    features_path: "/ml/Mozart_Requiem_features.json"
+
+  planet-caravan:
+    title: "Planet Caravan"
+    artist: "Black Sabbath"
+    features_path: "/ml/planet_caraven_black_sabbath_features.json"
+
+  serenade:
+    title: "Serenade"
+    artist: "Franz Schubert"
+    features_path: "/ml/Schubert_Serenade_features.json"
+
+  sparks:
+    title: "Sparks"
+    artist: "Coldplay"
+    features_path: "/ml/sparks_coldplay_features.json"
+
+  pas-de-deux:
+    title: "Pas de deux (The Nutcracker)"
+    artist: "Pyotr Ilyich Tchaikovsky"
+    features_path: "/ml/Tchaikovsky_pas_de_deux_features.json"
+
+  where-is-the-love:
+    title: "Where Is the Love?"
+    artist: "The Black Eyed Peas"
+    features_path: "/ml/The_Black_Eyed_Peas_Where-Is-The_Love_features.json"
+
+  wish-you-were-here:
+    title: "Wish You Were Here"
+    artist: "Pink Floyd"
+    features_path: "/ml/wish_you_were_here_pink_floyd_features.json"

@@ -1,0 +1,157 @@
+{
+  "format": "graph-model",
+  "generatedBy": "2.14.0",
+  "convertedBy": "TensorFlow.js Converter v4.22.0",
+  "modelTopology": {
+    "versions": {
+      "producer": 175,
+      "minConsumer": 12
+    },
+    "node": [
+      {
+        "name": "input",
+        "op": "Placeholder",
+        "attr": {
+          "dtype": {
+            "type": "DT_FLOAT"
+          },
+          "shape": {
+            "shape": {
+              "dim": [
+                {
+                  "size": -1
+                },
+                {
+                  "size": 31
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "name": "weight",
+        "op": "Const",
+        "attr": {
+          "dtype": {
+            "type": "DT_FLOAT"
+          }
+        }
+      },
+      {
+        "name": "matmul",
+        "op": "MatMul",
+        "input": [
+          "input",
+          "weight"
+        ],
+        "attr": {
+          "T": {
+            "type": "DT_FLOAT"
+          },
+          "transpose_a": {
+            "b": false
+          },
+          "transpose_b": {
+            "b": false
+          }
+        }
+      },
+      {
+        "name": "bias",
+        "op": "Const",
+        "attr": {
+          "dtype": {
+            "type": "DT_FLOAT"
+          }
+        }
+      },
+      {
+        "name": "bias_add",
+        "op": "BiasAdd",
+        "input": [
+          "matmul",
+          "bias"
+        ],
+        "attr": {
+          "T": {
+            "type": "DT_FLOAT"
+          },
+          "data_format": {
+            "s": "NHWC"
+          }
+        }
+      },
+      {
+        "name": "output",
+        "op": "Sigmoid",
+        "input": [
+          "bias_add"
+        ],
+        "attr": {
+          "T": {
+            "type": "DT_FLOAT"
+          }
+        }
+      }
+    ]
+  },
+  "weightsManifest": [
+    {
+      "paths": [
+        "group1-shard1of1.bin"
+      ],
+      "weights": [
+        {
+          "name": "weight",
+          "shape": [
+            31,
+            8
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "bias",
+          "shape": [
+            8
+          ],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ],
+  "signature": {
+    "inputs": {
+      "input": {
+        "name": "input:0",
+        "dtype": "DT_FLOAT",
+        "tensorShape": {
+          "dim": [
+            {
+              "size": -1
+            },
+            {
+              "size": 31
+            }
+          ]
+        }
+      }
+    },
+    "outputs": {
+      "output": {
+        "name": "output:0",
+        "dtype": "DT_FLOAT",
+        "tensorShape": {
+          "dim": [
+            {
+              "size": -1
+            },
+            {
+              "size": 8
+            }
+          ]
+        }
+      }
+    }
+  }
+}

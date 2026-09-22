@@ -1,0 +1,146 @@
+# Fluid Canvas ML & Song Swirl Dynamics Configuration
+# Defines model topologies, song feature timelines, and visual swirl behaviors.
+
+version: "1.0"
+
+# Global ML inference runtime settings
+ml_engine:
+  default_model_path: "/ml/browser/model.json"
+  model_format: "auto" # "auto", "graph", or "layers"
+  input_dimension: 31
+  output_dimensions: 8
+  output_keys:
+    - "flow_strength"
+    - "turbulence"
+    - "pigment_spread"
+    - "displacement"
+    - "warp"
+    - "color_shift"
+    - "detail"
+    - "activity"
+  inference_throttle_ms: 45
+  interpolation:
+    enabled: true
+    lerp_factor: 0.12 # Smooth glide between neural predictions
+
+# Fluid canvas rendering defaults
+rendering:
+  mesh_resolution: 128
+  plane_size: 8.0
+  default_texture: "/textures/default.webp"
+
+# Per-song configuration
+# Controls which feature timeline JSON and neural model to load,
+# plus song-specific swirl characteristics (turbulence, flow speed, pigment dispersion).
+songs:
+  beyond-love:
+    title: "Beyond Love"
+    artist: "Beach House"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/beach_house.json"
+    mood: "dreamy_ethereal"
+    swirl_profile:
+      flow_multiplier: 1.25
+      turbulence_bias: 0.18
+      pigment_spread_scale: 1.30
+      warp_factor: 1.15
+      color_shift_intensity: 1.20
+      displacement_scale: 1.05
+      detail_boost: 1.00
+      activity_boost: 1.15
+
+  catch-the-rainbow:
+    title: "Catch the Rainbow"
+    artist: "Rainbow"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/catch_the_rainbow.json"
+    mood: "melodic_ballad"
+    swirl_profile:
+      flow_multiplier: 0.95
+      turbulence_bias: 0.12
+      pigment_spread_scale: 1.10
+      warp_factor: 0.90
+      color_shift_intensity: 1.35
+      displacement_scale: 0.90
+      detail_boost: 1.10
+      activity_boost: 0.95
+
+  comfortably-numb:
+    title: "Comfortably Numb"
+    artist: "Pink Floyd"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/comfortably_numb.json"
+    mood: "psychedelic_soaring"
+    swirl_profile:
+      flow_multiplier: 1.40
+      turbulence_bias: 0.25
+      pigment_spread_scale: 1.45
+      warp_factor: 1.35
+      color_shift_intensity: 1.50
+      displacement_scale: 1.30
+      detail_boost: 1.25
+      activity_boost: 1.40
+
+  waltz-no-2:
+    title: "Waltz No. 2"
+    artist: "Dmitri Shostakovich"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/shostakovich_waltz_2.json"
+    mood: "orchestral_dramatic"
+    swirl_profile:
+      flow_multiplier: 1.35
+      turbulence_bias: 0.20
+      pigment_spread_scale: 1.15
+      warp_factor: 1.20
+      color_shift_intensity: 0.85
+      displacement_scale: 1.20
+      detail_boost: 1.30
+      activity_boost: 1.25
+
+  gymnopédie-no-1:
+    title: "Gymnopédie No. 1"
+    artist: "Erik Satie"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/satie_gymnopedie_1.json"
+    mood: "minimalist_serene"
+    swirl_profile:
+      flow_multiplier: 0.65
+      turbulence_bias: 0.05
+      pigment_spread_scale: 0.85
+      warp_factor: 0.70
+      color_shift_intensity: 0.75
+      displacement_scale: 0.60
+      detail_boost: 0.80
+      activity_boost: 0.70
+
+  clint-eastwood:
+    title: "Clint Eastwood"
+    artist: "Gorillaz"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/gorillaz_clint_eastwood.json"
+    mood: "trip_hop_groove"
+    swirl_profile:
+      flow_multiplier: 1.15
+      turbulence_bias: 0.30
+      pigment_spread_scale: 1.20
+      warp_factor: 1.30
+      color_shift_intensity: 1.10
+      displacement_scale: 1.15
+      detail_boost: 1.10
+      activity_boost: 1.20
+
+  billie-jean:
+    title: "Billie Jean"
+    artist: "Michael Jackson"
+    model_path: "/ml/browser/model.json"
+    features_path: "/ml/billie_jean.json"
+    mood: "punchy_rhythmic"
+    swirl_profile:
+      flow_multiplier: 1.30
+      turbulence_bias: 0.28
+      pigment_spread_scale: 1.25
+      warp_factor: 1.25
+      color_shift_intensity: 1.30
+      displacement_scale: 1.25
+      detail_boost: 1.40
+      activity_boost: 1.35
