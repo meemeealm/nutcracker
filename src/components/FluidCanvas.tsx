@@ -642,20 +642,38 @@ export const FluidCanvas: React.FC = () => {
 
     /* ---------- 6. Model ---------- */
 
-    const initialModelPath = getModelPathForTrack(selectedTrackRef.current.id);
+    const trackId = selectedTrackRef.current.id;
+    const initialModelPath = getModelPathForTrack(trackId);
+
+    console.log('[Nutcracker] ===== MODEL LOAD =====');
+    console.log('[Nutcracker] Track ID:', trackId);
+    console.log('[Nutcracker] Model path:', initialModelPath);
+
     const model = new ModelInference(initialModelPath);
+
+    console.log(
+      '[Nutcracker] ModelInference created with:',
+      initialModelPath
+    );
+
     modelInferenceRef.current = model;
 
     model
       .load()
       .then(() => {
         if (!isDisposed) {
-          console.log(`[Nutcracker] TensorFlow.js model loaded (${initialModelPath}).`);
+          console.log(
+            `[Nutcracker] Dedicated TensorFlow.js model loaded: ${initialModelPath}`
+          );
         }
       })
       .catch((err) => {
-        console.warn('[Nutcracker] Model load note:', err);
+        console.error(
+          `[Nutcracker] Failed to load model: ${initialModelPath}`,
+          err
+        );
       });
+
 
     /* ---------- 7. Feature data & Timeline Loader ---------- */
 
@@ -833,14 +851,56 @@ export const FluidCanvas: React.FC = () => {
           const inference = modelInferenceRef.current;
 
           if (data && data.frames && data.frames.length > 0) {
-            const hop = data.analysis?.hop_seconds;
-            const fps = hop && hop > 0 ? 1 / hop : DEFAULT_FPS;
-            const frameIndex = clamp(
-              Math.floor(audioTime * fps),
+            const frames = data.frames;
+
+            let frameIndex = 0;
+
+            // feature files contain explicit timestamps:
+            // frame 0 = 0.0s
+            // frame 1 = 0.1s
+            // frame 2 = 0.2s
+            // etc.
+            //
+            // Use the frame timestamp instead of relying on
+            // analysis.hop_seconds, which these files don't contain.
+            if (frames.length > 1) {
+              // Find the last frame whose timestamp is <= audioTime.
+              // Since frames are ordered by time, this gives us
+              // the correct precomputed frame.
+              let low = 0;
+              let high = frames.length - 1;
+
+              while (low <= high) {
+                const mid = Math.floor((low + high) / 2);
+                const frameTime = Number(frames[mid].time ?? 0);
+
+                if (frameTime <= audioTime) {
+                  frameIndex = mid;
+                  low = mid + 1;
+                } else {
+                  high = mid - 1;
+                }
+              }
+            }
+
+            frameIndex = clamp(
+              frameIndex,
               0,
-              data.frames.length - 1
+              frames.length - 1
             );
-            const frame = data.frames[frameIndex];
+
+            const frame = frames[frameIndex];
+
+            console.log(
+              '[Nutcracker] Using feature frame:',
+              frameIndex,
+              'audioTime:',
+              audioTime,
+              'frameTime:',
+              frame?.time
+            );
+
+
 
             if (frame && (frame as any).target) {
               const t = (frame as any).target;
