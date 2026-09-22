@@ -88,7 +88,7 @@ export const TRACKS: TrackOption[] = [
     artist: 'Erik Satie',
     album: '3 Gymnopédies',
     duration: 180,
-    audioPath: resolveAudioPath('/audio/erik_satie_gymnopédie_num_1.mp3'),
+    audioPath: resolveAudioPath('/audio/erik_satie_gymnopedie_num_1.mp3'),
     featuresPath: getFeaturesPathForTrack('gymnopédie-no-1', '/ml/Erik_Satie_Gymnopédie_num_1_features.json'),
     description: 'Gentle, ambient minimalist piano composition with a relaxed, reflective mood.',
   },
